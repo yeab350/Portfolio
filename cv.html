@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character encoding and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page title and favicon -->
+    <title>Yeab T. Mekasha | CV</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs/%3E%3Crect width='64' height='64' rx='12' ry='12' fill='%2310b981'/%3E%3Ctext x='50%' y='54%' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-size='34' font-weight='700' fill='%23ffffff'%3EY%3C/text%3E%3C/svg%3E">
+    
+    <!-- External stylesheets and fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/Project.css?v=printfix2">
+    <style media="print">
+      /* Inline safety net to confirm print CSS applies */
+      .cv-actions { display: none !important; }
+      .cv-sidebar { background: #334155 !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .cv-main { background: #ffffff !important; }
+      .cv-main-card { border-left-color: #10b981 !important; }
+    </style>
+    <style media="screen">
+      /* CV mobile enhancements: screen only, do not affect print/download */
+      /* Desktop (normal mode): remove big container look from right column, keep sidebar card */
+      @media (min-width: 901px) {
+        body.cv-root .cv-main {
+          border-radius: 0;
+          box-shadow: none;
+          background: transparent;
+        }
+        body.cv-root .cv-main-card {
+          box-shadow: none;
+        }
+      }
+      @media (max-width: 900px) {
+        body.cv-root .cv-container { padding: 4vw 0; }
+        body.cv-root .cv-layout {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 4vw;
+          padding: 0 5vw;
+        }
+        /* Keep sidebar as a card, but make main blend into the page */
+        body.cv-root .cv-sidebar {
+          width: 100%;
+          border-radius: 16px;
+          box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+          overflow: hidden;
+          padding: 5vw;
+        }
+        body.cv-root .cv-main {
+          width: 100%;
+          border-radius: 0;
+          box-shadow: none;
+          background: transparent;
+          overflow: visible;
+          padding: 5vw 5vw 6vw;
+        }
+
+        /* Profile and headings */
+        body.cv-root .cv-profile-section { text-align: center; }
+        body.cv-root .cv-profile { width: min(38vw, 140px); height: auto; border-radius: 50%; display: block; margin: 0 auto 3vw; }
+        body.cv-root .cv-name { font-size: clamp(18px, 6vw, 26px); margin: 0.5rem 0 0.25rem; text-align: center; }
+        body.cv-root .cv-title { font-size: clamp(12px, 3.6vw, 16px); text-align: center; }
+
+        /* Sidebar spacing */
+        body.cv-root .cv-sidebar-h3 { margin: 5vw 0 2vw; font-size: clamp(14px, 4.2vw, 18px); }
+        body.cv-root .cv-contact-item, body.cv-root .cv-link-item { margin: 2.6vw 0; }
+        body.cv-root .cv-sidebar-list { padding-left: 1.2rem; }
+
+        /* Main cards and chips */
+        body.cv-root .cv-main-card { margin: 4vw 0; padding: 4vw; border-radius: 14px; box-shadow: none; }
+        body.cv-root .cv-main-h2 { font-size: clamp(16px, 5vw, 22px); margin-bottom: 2.5vw; }
+        body.cv-root .cv-main-item { margin: 3.5vw 0; }
+        body.cv-root .cv-main-list { padding-left: 1.2rem; }
+        body.cv-root .cv-chip-row { display: flex; flex-wrap: wrap; gap: 1.8vw; justify-content: center; }
+        body.cv-root .cv-chip { font-size: clamp(10px, 3.2vw, 13px); padding: 0.6em 0.8em; }
+      }
+    </style>
+</head>
+<body class="cv-root">
+    <!-- CV container for print layout -->
+    <div class="cv-container">
+        <!-- Top action bar (hidden on print) -->
+        <div class="cv-actions">
+            <button id="cv-print-btn" class="cv-action-btn" type="button" data-print-cv>
+                <span>Print / Save PDF</span>
+            </button>
+            <a class="cv-action-btn ghost" href="index.html">
+                <span>Home</span>
+            </a>
+        </div>
+        <!-- Two-column CV layout -->
+        <div class="cv-layout">
+            <!-- Left sidebar with personal info and skills -->
+            <div class="cv-sidebar">
+                <!-- Profile section with photo and basic info -->
+                <div class="cv-profile-section">
+                    <img class="cv-profile" src="Images/Profile.jpg" alt="Profile Picture of Yeab Mekasha">
+                    <h1 class="cv-name">Yeab T. Mekasha</h1>
+                    <p class="cv-title">Web Designer • Full‑Stack Developer • Software Engineering Student</p>
+                </div>
+                
+                <!-- Contact information section -->
+                <div class="cv-contact-section">
+                    <h3 class="cv-sidebar-h3">Contact</h3>
+                    <div class="cv-contact-item">
+                        <strong>Email:</strong><br>
+                        <a href="mailto:yeabtsegaye350@gmail.com">yeabtsegaye350@gmail.com</a>
+                    </div>
+                    <div class="cv-contact-item">
+                        <strong>Phone:</strong><br>
+                        <a href="tel:+251988200866">+251 988 200 866</a>
+                    </div>
+                    <div class="cv-contact-item">
+                        <strong>Location:</strong><br>
+                        Addis Ababa, Ethiopia
+                    </div>
+                </div>
+                
+                <!-- Social media and professional links -->
+                <div class="cv-links-section">
+                    <h3 class="cv-sidebar-h3">Links</h3>
+                    <div class="cv-link-item">
+                        <a href="https://github.com/yeab350" target="_blank">GitHub</a>
+                    </div>
+                    <div class="cv-link-item">
+                        <a href="https://www.linkedin.com/in/yeab-tsegaye-25765724b" target="_blank">LinkedIn</a>
+                    </div>
+                    <div class="cv-link-item">
+                        <a href="https://t.me/yeab350" target="_blank">Telegram</a>
+                    </div>
+                    <div class="cv-link-item">
+                        <a href="https://twitter.com/yeab350" target="_blank">Twitter</a>
+                    </div>
+                </div>
+                
+                <!-- Core skills list -->
+                <div class="cv-skills-section">
+                    <h3 class="cv-sidebar-h3">Core Skills</h3>
+                    <ul class="cv-sidebar-list">
+                        <li>HTML, CSS, JavaScript</li>
+                        <li>React.js</li>
+                        <li>Node.js & Express.js</li>
+                        <li>SQL & PostgreSQL</li>
+                        <li>Database Design & Management</li>
+                        <li>Tailwind CSS</li>
+                        <li>UI/UX Design</li>
+                        <li>Teamwork & Collaboration</li>
+                        <li>Problem-Solving</li>
+                        <li>Responsive Web Design</li>
+                    </ul>
+                </div>
+                
+                <!-- Technology badges -->
+                <div class="cv-tech-section">
+                    <h3 class="cv-sidebar-h3">Technologies</h3>
+                    <div class="cv-tech-badges">
+                        <span class="cv-tech-badge">HTML5</span>
+                        <span class="cv-tech-badge">CSS3</span>
+                        <span class="cv-tech-badge">JavaScript</span>
+                        <span class="cv-tech-badge">React.js</span>
+                        <span class="cv-tech-badge">Node.js</span>
+                        <span class="cv-tech-badge">Express.js</span>
+                        <span class="cv-tech-badge">SQL</span>
+                        <span class="cv-tech-badge">PostgreSQL</span>
+                        <span class="cv-tech-badge">Database</span>
+                        <span class="cv-tech-badge">Figma</span>
+                        <span class="cv-tech-badge">Git & GitHub</span>
+                        <span class="cv-tech-badge">Canva</span>
+                    </div>
+                </div>
+            </div>
+      
+            <!-- Right main content area -->
+            <div class="cv-main">
+                <!-- Compact header with professional chips -->
+                <section class="cv-main-card cv-header-card">
+                    <div class="cv-chip-row">
+                        <span class="cv-chip">Full‑Stack Developer</span>
+                        <span class="cv-chip">Open to Opportunities</span>
+                        <span class="cv-chip">Web Design • Front‑End & Back‑End</span>
+                    </div>
+                </section>
+                <!-- Professional summary section -->
+                <section class="cv-main-card">
+                    <h2 class="cv-main-h2">Professional Summary</h2>
+                    <p>Passionate Software Engineering student and Full‑Stack Developer who turns ideas into functional, well‑designed digital products. I specialize in building responsive, accessible interfaces and clean, maintainable systems using JavaScript, React.js, Node.js, Express.js, and relational databases (SQL & PostgreSQL).</p>
+                    <p>Hands‑on experience delivering end‑to‑end web solutions: crafting modern UIs, designing RESTful APIs, and integrating PostgreSQL for reliable data workflows. Earlier experience as a Data Entry Specialist strengthened my accuracy, organization, and attention to detail—qualities that guide how I structure code and systems.</p>
+                    <p>I’m driven to learn continuously, take on remote opportunities, and contribute to meaningful projects that combine technical precision with thoughtful, user‑centric design.</p>
+                </section>
+
+                <!-- Education section -->
+                <section class="cv-main-card">
+                    <h2 class="cv-main-h2">Education</h2>
+                    <div class="cv-main-item">
+                        <h4>BSc in Software Engineering</h4>
+                        <div class="cv-main-subtitle">HiLCoE School of Computer Science & Technology</div>
+                        <div class="cv-main-date">Expected Jan 2027</div>
+                    </div>
+                    <div class="cv-main-item">
+                        <h4>High School Diploma</h4>
+                        <div class="cv-main-subtitle">Gibson Youth Academy</div>
+                        <div class="cv-main-date">Jul 2021</div>
+                    </div>
+                </section>
+
+                <!-- Work experience section -->
+                <section class="cv-main-card">
+                    <h2 class="cv-main-h2">Experience</h2>
+                    <div class="cv-main-item">
+                        <h4>Freelance Web Designer</h4>
+                        <div class="cv-main-subtitle">Self-Employed</div>
+                        <div class="cv-main-date">2023 – Present</div>
+                        <ul class="cv-main-list">
+                            <li>Designed and built responsive, accessible websites with modern layouts.</li>
+                            <li>Implemented dark/light themes and mobile-first navigation patterns.</li>
+                        </ul>
+                    </div>
+                    <div class="cv-main-item">
+                        <h4>Data Entry Specialist</h4>
+                        <div class="cv-main-subtitle">Swift Rides LLC</div>
+                        <div class="cv-main-date">Aug 2024 – Jul 2025</div>
+                    </div>
+                </section>
+
+                <!-- Projects showcase section -->
+                <section class="cv-main-card">
+                    <h2 class="cv-main-h2">Projects</h2>
+                    <div class="cv-main-item">
+                        <h4>Portfolio Website</h4>
+                        <div class="cv-main-subtitle"><a href="index.html">Personal CV website</a></div>
+                        <p>Clean semantic HTML, modern CSS (Flexbox & Grid), dark/light mode, fully responsive.</p>
+                    </div>
+                    <div class="cv-main-item">
+                        <h4>Creative Layout Design</h4>
+                        <p>Consistent spacing & typography hierarchy, responsive grid, hover animations, modular structure.</p>
+                    </div>
+                    <div class="cv-main-item">
+                        <h4>UI/UX Wireframe</h4>
+                        <p>Navigation flow, minimalist components, accessibility considerations, brand alignment.</p>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+    <script src="app.js" defer></script>
+    <script>
+      // Auto-print if opened with ?print=1 (more reliable print timing)
+      (function(){
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('print') === '1') {
+          // Wait for fonts/images to be ready then trigger print
+          const whenReady = Promise.all([
+            document.fonts ? document.fonts.ready : Promise.resolve(),
+            new Promise((resolve) => {
+              if (document.readyState === 'complete') return resolve();
+              window.addEventListener('load', () => resolve(), { once: true });
+            })
+          ]);
+          whenReady.then(() => setTimeout(() => window.print(), 150));
+          // If opened from another page as a popup, auto-close after printing
+          const tryClose = () => {
+            if (window.opener && !window.opener.closed) {
+              setTimeout(() => window.close(), 150);
+            }
+          };
+          window.addEventListener('afterprint', tryClose, { once: true });
+          // Fallback: if afterprint not fired (some browsers), close after a delay
+          setTimeout(tryClose, 2500);
+        }
+        // Add Ctrl/Cmd+P handler to ensure print works reliably
+        document.addEventListener('keydown', (e) => {
+          if ((e.ctrlKey || e.metaKey) && (e.key.toLowerCase() === 'p')) {
+            e.preventDefault();
+            window.print();
+          }
+        });
+
+        // Single print trigger is handled in app.js for [data-print-cv]
+
+        // Note: inline onclick is kept for maximum browser compatibility
+      })();
+    </script>
+</body>
+</html>
+
+

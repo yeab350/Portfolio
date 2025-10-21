@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for SEO and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page title and favicon -->
+    <title>Yeab T. Mekasha | Contact</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%9E%3C/text%3E%3C/svg%3E">
+    
+    <!-- External stylesheets and fonts -->
+    <link rel="stylesheet" href="CSS/Project.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+      /* Contact page specific spacing overrides */
+      body.contact-page .page { min-height: 100vh; }
+      body.contact-page main { 
+        margin: 0; 
+        padding: 0; 
+        opacity: 0;
+        animation: fadeInUp 0.8s ease-out 0.3s forwards;
+      }
+      body.contact-page section { 
+        margin: 0; 
+        padding: 0; 
+        animation: none; 
+      }
+      body.contact-page .contact-container { 
+        display: flex; 
+        justify-content: center; 
+        margin: 0 3%; 
+        padding: 18vh 0 3vh; 
+      }
+      body.contact-page .contact-info { 
+        width: 100%; 
+        max-width: 600px; 
+        margin: 0.5rem auto; 
+      }
+      body.contact-page .contact-info h2 { 
+        margin: 0 0 0.5rem; 
+        animation: fadeInUp 0.8s ease-out 0.5s both;
+      }
+      body.contact-page .info-item { 
+        margin: 0.05rem 0; 
+        opacity: 0;
+        animation: fadeInUp 0.8s ease-out 0.7s forwards;
+      }
+      body.contact-page .social-links { 
+        margin-top: 0.15rem; 
+      }
+      body.contact-page .social-item { 
+        margin: 0.05rem 0; 
+        opacity: 0;
+        animation: fadeInUp 0.8s ease-out 0.9s forwards;
+      }
+      body.contact-page .page > footer { 
+        margin-top: auto; 
+      }
+
+      
+
+      /* Responsive tweaks for contact page */
+      @media (max-width: 900px) {
+        body.contact-page .contact-container { margin: 0 4%; padding-top: 12vh; }
+        body.contact-page .contact-info { max-width: 92%; }
+        body.contact-page .contact-info h2 { font-size: clamp(20px, 4.6vw, 28px); }
+        body.contact-page .info-item, body.contact-page .social-item { padding: 10px 8px; gap: 8px; }
+        body.contact-page .info-item i, body.contact-page .social-item i { font-size: 18px; width: 24px; }
+        body.contact-page .social-item a, body.contact-page .info-item a { display: inline-block; word-break: break-word; }
+      }
+      @media (max-width: 600px) {
+        body.contact-page .contact-container { margin: 0 5%; padding-top: 10vh; }
+        body.contact-page .contact-info { max-width: 96%; }
+        body.contact-page .contact-info h2 { font-size: clamp(18px, 6vw, 24px); }
+        body.contact-page .info-item i, body.contact-page .social-item i { font-size: 16px; width: 22px; }
+      }
+    </style>
+</head>
+<body class="contact-page">
+    <!-- Dark mode toggle checkbox (hidden) -->
+    <input type="checkbox" id="darkModeToggle" class="dark-mode-toggle">
+
+    <!-- Main page wrapper -->
+    <div class="page">
+        <!-- Header section with navigation -->
+        <header>
+            <nav class="navbar">
+                <!-- Site title/logo -->
+                <h1>Yeab T. Mekasha</h1>
+                
+                <!-- Mobile menu toggle (hidden) -->
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                
+                <!-- Hamburger menu icon for mobile -->
+                <label for="menu-toggle" class="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                
+                <!-- Main navigation links -->
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+                
+                <!-- Dark mode toggle switch -->
+                <label class="toggle-switch" for="darkModeToggle">
+                    <span class="slider"></span>
+                </label>
+            </nav>
+        </header>
+
+        <!-- Main content area -->
+        <main>
+            <!-- Contact page container -->
+            <div class="contact-container">
+                <!-- Contact information section -->
+                <section class="contact-info">
+                    <h2>Get In Touch</h2>
+                    
+                    <!-- Email contact -->
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=yeabtsegaye350@gmail.com" target="_blank" rel="noopener noreferrer">yeabtsegaye350@gmail.com</a></p>
+                    </div>
+                    
+                    <!-- Phone contact -->
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p><a href="tel:+251988200866">+251 988 200 866</a></p>
+                    </div>
+                    
+                    <!-- Social media links -->
+                    <div class="social-links">
+                        <!-- LinkedIn -->
+                        <div class="social-item">
+                            <i class="fab fa-linkedin"></i>
+                            <a href="https://www.linkedin.com/in/yeab-tsegaye-25765724b?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BpnLRywWuRcyz1FXh%2BnaprQ%3D%3D" target="_blank">Yeab Tsegaye</a>
+                        </div>
+                        <!-- Telegram -->
+                        <div class="social-item">
+                            <i class="fab fa-telegram"></i>
+                            <a href="https://t.me/yeab350" target="_blank">@yeab350</a>
+                        </div>
+                        
+                        <!-- Twitter -->
+                        <div class="social-item">
+                            <i class="fab fa-twitter"></i>
+                            <a href="https://twitter.com/yeab350" target="_blank">@yeab350</a>
+                        </div>
+                        
+                        <!-- GitHub -->
+                        <div class="social-item">
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/yeab350" target="_blank">@yeab350</a>
+                        </div>
+                        
+                        
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer section -->
+        <footer>
+            <p id="footer-text">&copy; 2025 Yeab T. Mekasha</p>
+        </footer>
+    </div>
+    <script src="app.js" defer></script>
+</body>
+</html>

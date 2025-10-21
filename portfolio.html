@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for SEO and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page title and favicon -->
+    <title>Yeab T. Mekasha | Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%BC%3C/text%3E%3C/svg%3E">
+    
+    <!-- External stylesheets and fonts -->
+    <link rel="stylesheet" href="CSS/Project.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Dark mode toggle checkbox (hidden) -->
+    <input type="checkbox" id="darkModeToggle" class="dark-mode-toggle">
+
+    <!-- Main page wrapper -->
+    <div class="page">
+        <!-- Header section with navigation -->
+        <header>
+            <nav class="navbar">
+                <!-- Site title/logo -->
+                <h1>Yeab T. Mekasha</h1>
+                
+                <!-- Mobile menu toggle (hidden) -->
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                
+                <!-- Hamburger menu icon for mobile -->
+                <label for="menu-toggle" class="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                
+                <!-- Main navigation links -->
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <!-- Dark mode toggle switch -->
+                <label class="toggle-switch" for="darkModeToggle">
+                    <span class="slider"></span>
+                </label>
+            </nav>
+        </header>
+
+        <!-- Main content area -->
+        <main>
+            <!-- Portfolio showcase section with profile and projects -->
+            <section class="portfolio-main">
+                <!-- Profile image display -->
+                <div class="portfolio-profile">
+                    <img src="Images/Profile.jpg" alt="Profile Picture of Yeab Mekasha" class="portfolio-img">
+                    <p class="hero-subtitle">Full‑Stack Developer · Web Designer · Software Engineering Student</p>
+                </div>
+
+                <!-- Project cards container -->
+                <h2>Projects</h2>
+                <div class="portfolio-cards">
+                    <!-- Project 1: Portfolio Website -->
+                    <div class="portfolio-card">
+                        <h3>Portfolio Website</h3>
+                        <p>This fully responsive personal CV website showcases:</p>
+                        <ul>
+                            <li>Clean, semantic HTML5 structure</li>
+                            <li>Modern CSS styling with Flexbox & Grid</li>
+                            <li>Custom dark/light mode toggle</li>
+                            <li>Optimized for mobile, tablet, and desktop</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Project 2: UI Store -->
+                    <div class="portfolio-card">
+                        <h3>UI Store</h3>
+                        <p>A full UI templates store selling prebuilt HTML, CSS, and optional JavaScript components/pages with real users, purchases, and admin management.</p>
+                        <ul>
+                            <li>Admin-side CRUD for products, categories, and orders</li>
+                            <li>Full login and sign up with session handling</li>
+                            <li>Purchase history and order tracking for users</li>
+                            <li>Tech stack: Express.js + PostgreSQL backend, Node.js-driven frontend</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Project 3: UI/UX Wireframe -->
+                    <div class="portfolio-card">
+                        <h3>UI/UX Wireframe</h3>
+                        <p>Mobile app wireframe concepts focusing on:</p>
+                        <ul>
+                            <li>Intuitive user navigation flow</li>
+                            <li>Minimalist and modern UI components</li>
+                            <li>Accessibility-friendly design</li>
+                            <li>Seamless integration with brand identity</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tools and technologies section -->
+            <section class="tools-tech">
+                <h2>Tools & Technologies</h2>
+                <ul class="tools-list">
+                    <li>HTML5 & CSS3</li>
+                    <li>JavaScript (ES6+)</li>
+                    <li>React.js</li>
+                    <li>Node.js</li>
+                    <li>Express.js</li>
+                    <li>SQL & PostgreSQL</li>
+                    <li>Database Design</li>
+                    <li>Responsive Web Design</li>
+                    <li>Tailwind CSS</li>
+                    <li>Git & GitHub</li>
+                    <li>Figma</li>
+                    <li>Canva</li>
+                </ul>
+            </section>
+
+            <!-- Certifications section -->
+            <section>
+                <h2>Certifications</h2>
+                <ul>
+                    <li>
+                        Verified Certificate of Nanodegree Program Completion – Programming Fundamentals  
+                        (<a href="https://www.udacity.com/certificate/e/7b7dc418-4dcd-11ef-a8ef-af08c2425f8e" target="_blank">View Certificate</a>)
+                    </li>
+                    <li>English Proficiency Certificate</li>
+                    <li>SAT</li>
+                </ul>
+            </section>
+        </main>
+
+        <!-- Footer section -->
+        <footer>
+            <p id="footer-text">&copy; 2025 Yeab T. Mekasha</p>
+        </footer>
+    </div>
+    <script src="app.js" defer></script>
+</body>
+</html>
