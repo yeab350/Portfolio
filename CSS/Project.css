@@ -255,16 +255,16 @@ main,section,article,.content-block {
 /* ========================================
    HEADER & NAVIGATION STYLES
    ======================================== */
-/* Main header container with glass morphism effect */
+/* Main header container with a blended, low-profile appearance */
 header {
-    background: var(--header-bg);
-    color: #fff;
-    backdrop-filter: blur(10px);           /* Glass blur effect */
-    border-bottom: 1px solid var(--glass-border);
-    padding: 0.3% 0;
-    animation: slideInLeft 0.8s ease-out;  /* Entrance animation */
-    position: relative; /* create stacking context */
-    z-index: 3000; /* keep header and dropdown above page content */
+    background: transparent; /* blend header into the page background */
+    color: var(--text-color);
+    backdrop-filter: none;
+    border-bottom: none;
+    padding: 0.4% 0;
+    animation: none;
+    position: relative;
+    z-index: 10;
 }
 /* Navigation bar container with flexbox layout */
 .navbar {
@@ -279,7 +279,7 @@ header {
 .navbar h1 {
     font-size: 1.5vw;
     margin: 0;
-    color: #fff;
+    color: var(--text-color);
     font-weight: 700;
     animation: scaleIn 1s ease-out;
     transition: transform 0.3s ease;
@@ -303,7 +303,7 @@ header {
 }
 /* Individual navigation link styling */
 .nav-links a {
-    color: white;
+    color: var(--text-color);
     text-decoration: none;
     transition: color 0.3s ease, transform 0.3s ease, background-size 0.3s ease;
     font-weight: 500;
@@ -799,18 +799,20 @@ button:hover {
 }
 /* Footer */
 footer {
-    background: var(--footer-bg);
-    color: white;
+    background: transparent;
+    color: var(--secondary-color);
     text-align: center;
-    padding: 0.5%;
-    margin-top: 2%;
-    backdrop-filter: blur(10px);
-    border-top: 1px solid var(--glass-border);
+    padding: 0.6% 0;
+    margin-top: auto;
+    backdrop-filter: none;
+    border-top: none;
+    font-size: 0.9rem;
+    opacity: 0.9;
 }
 
-#footer-text {color: white;}
+#footer-text { color: var(--secondary-color); opacity: 0.95; }
 
-.page > footer {margin-top: auto;}
+.page > footer { margin-top: auto; }
 
 /* Responsive */
 @media (min-width: 901px) {
