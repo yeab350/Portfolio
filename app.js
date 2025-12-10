@@ -94,10 +94,7 @@
       }
       const url = new URL('cv.html', window.location.href);
       url.searchParams.set('print', '1');
-      const win = window.open(url.toString(), '_blank', 'noopener,noreferrer,width=960,height=1200');
-      if (!win) {
-        window.location.href = url.toString();
-      }
+      window.location.href = url.toString();
     });
   });
 

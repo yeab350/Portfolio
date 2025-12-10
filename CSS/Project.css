@@ -38,6 +38,8 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
     /* Header and footer backgrounds */
     --header-bg: rgba(52, 73, 94, 0.9);        /* Header background */
     --footer-bg: rgba(52, 73, 94, 0.9);        /* Footer background */
+    --nav-overlay-bg: rgba(15, 23, 42, 0.95);  /* Mobile nav drawer background */
+    --nav-overlay-text: #f8fafc;               /* Mobile nav drawer text */
     /* Gradient combinations for different sections */
     --skill-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
     --experience-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
@@ -85,6 +87,8 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
     /* Dark mode header and footer */
     --header-bg: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
     --footer-bg: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    --nav-overlay-bg: rgba(15, 23, 42, 0.95);
+    --nav-overlay-text: #f8fafc;
     /* Dark mode gradients for sections */
     --skill-gradient: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
     --experience-gradient: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
@@ -112,6 +116,8 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
     /* Dark mode header and footer */
     --header-bg: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
     --footer-bg: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    --nav-overlay-bg: rgba(15, 23, 42, 0.95);
+    --nav-overlay-text: #f8fafc;
     /* Dark mode gradients for sections */
     --skill-gradient: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
     --experience-gradient: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
@@ -348,14 +354,14 @@ header {
     transition: background 0.3s ease;
 }
 .burger:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(16, 185, 129, 0.15);
 }
 /* Hamburger menu lines */
 .burger span {
     display: block;
     width: 24px;
     height: 2px;
-    background: #fff;
+    background: var(--text-color);
     margin: 4px 0;
     transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
     border-radius: 2px;
@@ -859,9 +865,10 @@ footer {
         top: 100%;
         left: auto;
         right: 2%;
-        background: var(--header-bg);
-        border-bottom: 1px solid var(--glass-border);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        background: var(--nav-overlay-bg);
+        color: var(--nav-overlay-text);
+        border: 1px solid rgba(248, 250, 252, 0.12);
+        box-shadow: 0 18px 36px rgba(15, 23, 42, 0.28);
         padding: 8px 12px;
         border-radius: 12px;
         margin-top: 6px;
@@ -880,7 +887,18 @@ footer {
         pointer-events: auto;
     }
     .nav-links li { margin: 0; }
-    .nav-links a { display: block; width: 100%; padding: 10px 12px; border-radius: 8px; }
+    .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+        color: var(--nav-overlay-text);
+        transition: background 0.2s ease, color 0.2s ease;
+    }
+    .nav-links a:hover {
+        background: rgba(248, 250, 252, 0.12);
+        color: #ffffff;
+    }
     .toggle-switch {
         grid-area: toggle;
         justify-self: start;
@@ -970,6 +988,82 @@ footer {
     .cv-table th, .cv-table td { padding: 10px; word-break: break-word; }
 }
 /* CV Layout */
+.cv-page-header {
+    display: flex;
+    justify-content: center;
+    padding: 16px 18px 12px;
+    background: transparent;
+}
+.cv-header-shell {
+    width: min(1100px, 100%);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.18);
+}
+.cv-header-logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.cv-header-logo:hover {
+    color: var(--accent-color);
+    transform: translateY(-1px);
+}
+.cv-page-nav {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+.cv-page-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding: 4px 0;
+    transition: color 0.2s ease;
+}
+.cv-page-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    border-radius: 999px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.25s ease;
+    opacity: 0.5;
+}
+.cv-page-nav a:hover {
+    color: var(--accent-color);
+}
+.cv-page-nav a:hover::after,
+.cv-page-nav a[aria-current="page"]::after {
+    transform: scaleX(1);
+}
+.cv-page-nav a[aria-current="page"] {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+.theme-dark .cv-header-shell,
+body.theme-dark .cv-header-shell {
+    background: rgba(15, 23, 42, 0.85);
+    border-color: rgba(148, 163, 184, 0.28);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
 .cv-root {
     padding: 0;
     background: var(--bg-color);
@@ -994,7 +1088,9 @@ footer {
     padding: 10px 15px;
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--glass-border);
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.18);
     pointer-events: auto;
 }
 .cv-action-btn {
@@ -1252,6 +1348,18 @@ body.theme-dark .cv-sidebar {
     .cv-layout { grid-template-columns: 200px 1fr; }
     
     .cv-sidebar { padding: 15px 10px; }
+
+    .cv-header-shell {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .cv-page-nav {
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+    }
     
     .burger { padding: 0.2% 0.5%; }
     
@@ -1378,11 +1486,12 @@ body.theme-dark .cv-sidebar {
   /* Page setup */
   @page { size: A4; margin: 12mm; }
 
-  /* Disable animations and transitions */
-  *, *::before, *::after { animation: none !important; transition: none !important; box-shadow: none !important; }
+    /* Disable animations and transitions */
+    *, *::before, *::after { animation: none !important; transition: none !important; box-shadow: none !important; }
 
-  /* Hide non-print UI (action bar) */
-  .cv-actions { display: none !important; }
+    /* Hide non-print UI (action bar and header) */
+    .cv-page-header,
+    .cv-actions { display: none !important; }
 
   /* Normalize layout height for print */
   .cv-root, .cv-container { height: auto !important; }
