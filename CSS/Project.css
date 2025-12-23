@@ -991,20 +991,29 @@ footer {
 .cv-page-header {
     display: flex;
     justify-content: center;
-    padding: 16px 18px 12px;
+    padding: 0;
     background: transparent;
 }
 .cv-header-shell {
-    width: min(1100px, 100%);
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 24px;
-    padding: 12px 20px;
-    border-radius: 999px;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(16px);
-    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.18);
+    padding: 18px clamp(18px, 4vw, 56px);
+    border-radius: 0;
+    background: var(--bg-color);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    backdrop-filter: blur(10px);
+    box-shadow: none;
+}
+.cv-header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 .cv-header-logo {
     font-size: 1.25rem;
@@ -1059,9 +1068,9 @@ footer {
 }
 .theme-dark .cv-header-shell,
 body.theme-dark .cv-header-shell {
-    background: rgba(15, 23, 42, 0.85);
-    border-color: rgba(148, 163, 184, 0.28);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    background: var(--bg-color);
+    border-color: rgba(71, 85, 105, 0.35);
+    box-shadow: none;
 }
 
 .cv-root {
@@ -1076,22 +1085,6 @@ body.theme-dark .cv-header-shell {
     position: relative;
     z-index: 1;
     height: 100vh;
-}
-.cv-actions {
-    position: sticky;
-    top: 0;
-    z-index: 1000; /* ensure above content */
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 15px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 999px;
-    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.18);
-    pointer-events: auto;
 }
 .cv-action-btn {
     background: var(--accent-color);
@@ -1484,14 +1477,17 @@ body.theme-dark .cv-sidebar {
   html, body, .cv-root { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
   /* Page setup */
-  @page { size: A4; margin: 12mm; }
+    @page { size: A4; margin: 10mm; }
 
     /* Disable animations and transitions */
     *, *::before, *::after { animation: none !important; transition: none !important; box-shadow: none !important; }
 
-    /* Hide non-print UI (action bar and header) */
-    .cv-page-header,
-    .cv-actions { display: none !important; }
+        /* Hide non-print UI (action bar and header) */
+        .cv-page-header,
+        .cv-header-actions { display: none !important; }
+
+    /* Remove default browser print margins */
+    html, body { margin: 0 !important; }
 
   /* Normalize layout height for print */
   .cv-root, .cv-container { height: auto !important; }
@@ -1526,16 +1522,16 @@ body.theme-dark .cv-sidebar {
   a, .cv-main-subtitle a { color: var(--accent-color) !important; text-decoration: none !important; }
 
   /* Remove sticky behavior for print */
-  .cv-actions { position: static !important; }
+    .cv-header-actions { position: static !important; }
 
   /* Avoid unexpected page breaks inside key blocks */
   .cv-sidebar, .cv-main-card, .cv-main-item { break-inside: avoid; page-break-inside: avoid; }
 
   /* Remove backdrop/filters that may wash out colors */
-  header, .cv-actions { backdrop-filter: none !important; }
+    header, .cv-header-actions { backdrop-filter: none !important; }
 
   /* Fit to a single page: compact typography and spacing */
-  html, body { font-size: 11px !important; }
+    html, body { font-size: 11px !important; }
   .cv-container { padding: 0 !important; margin: 0 !important; }
   .cv-layout { grid-template-columns: 210px 1fr !important; gap: 8px !important; }
   .cv-sidebar { padding: 16px 12px !important; }
@@ -1547,20 +1543,22 @@ body.theme-dark .cv-sidebar {
   .cv-sidebar-list li { padding: 3px 0 !important; font-size: 10px !important; }
   .cv-tech-badge { padding: 2px 6px !important; font-size: 9px !important; }
 
-  .cv-main { padding: 14px 12px !important; gap: 6px !important; }
+    .cv-main { padding: 12px 10px !important; gap: 4px !important; }
   .cv-header-card { margin-bottom: 4px !important; }
-  .cv-main-card { padding: 6px 0 6px 8px !important; margin: 2px 0 !important; border-left-width: 2px !important; }
+    .cv-main-card { padding: 5px 0 5px 8px !important; margin: 2px 0 !important; border-left-width: 2px !important; }
   .cv-chip { padding: 4px 8px !important; font-size: 10px !important; }
   .cv-main-h2 { font-size: 15px !important; margin: 0 0 4px 0 !important; }
-  .cv-main-item { margin-bottom: 6px !important; padding-bottom: 4px !important; }
+    .cv-main-item { margin-bottom: 5px !important; padding-bottom: 3px !important; }
   .cv-main-item h4 { font-size: 13px !important; }
   .cv-main-subtitle { font-size: 11px !important; }
   .cv-main-date { font-size: 10px !important; }
   .cv-main-list { margin: 2px 0 0 14px !important; }
-  .cv-main-list li, .cv-main-item p { font-size: 10.5px !important; line-height: 1.3 !important; margin: 2px 0 !important; }
+    .cv-main-list li, .cv-main-item p { font-size: 10.5px !important; line-height: 1.28 !important; margin: 2px 0 !important; }
   .cv-chip-row { gap: 6px !important; }
   .cv-main p { margin: 2px 0 !important; }
 
-  /* Fallback: slight scale if still spilling over */
-  .cv-container { transform: scale(0.94); transform-origin: top left; width: 106%; }
+    .cv-tech-badges { display: grid !important; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 4px !important; }
+
+    /* Ensure content stays on one page while using full width */
+    .cv-container { transform: none !important; width: 100% !important; }
 }

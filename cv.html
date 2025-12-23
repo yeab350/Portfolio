@@ -79,17 +79,21 @@
     </style>
 </head>
 <body class="cv-root">
+    <header class="cv-page-header" role="banner">
+        <div class="cv-header-shell">
+            <a class="cv-header-logo" href="index.html">Yeab T. Mekasha</a>
+            <div class="cv-header-actions">
+                <button id="cv-print-btn" class="cv-action-btn" type="button" data-print-cv>
+                    <span>Print / Save PDF</span>
+                </button>
+                <a class="cv-action-btn ghost" href="index.html">
+                    <span>Home</span>
+                </a>
+            </div>
+        </div>
+    </header>
     <!-- CV container for print layout -->
     <div class="cv-container">
-        <!-- Top action bar (hidden on print) -->
-        <div class="cv-actions">
-            <button id="cv-print-btn" class="cv-action-btn" type="button" data-print-cv>
-                <span>Print / Save PDF</span>
-            </button>
-            <a class="cv-action-btn ghost" href="index.html">
-                <span>Home</span>
-            </a>
-        </div>
         <!-- Two-column CV layout -->
         <div class="cv-layout">
             <!-- Left sidebar with personal info and skills -->
@@ -185,9 +189,9 @@
                 <!-- Professional summary section -->
                 <section class="cv-main-card">
                     <h2 class="cv-main-h2">Professional Summary</h2>
-                    <p>Passionate Software Engineering student and Full‑Stack Developer who turns ideas into functional, well‑designed digital products. I specialize in building responsive, accessible interfaces and clean, maintainable systems using JavaScript, React.js, Node.js, Express.js, and relational databases (SQL & PostgreSQL).</p>
-                    <p>Hands‑on experience delivering end‑to‑end web solutions: crafting modern UIs, designing RESTful APIs, and integrating PostgreSQL for reliable data workflows. Earlier experience as a Data Entry Specialist strengthened my accuracy, organization, and attention to detail—qualities that guide how I structure code and systems.</p>
-                    <p>I’m driven to learn continuously, take on remote opportunities, and contribute to meaningful projects that combine technical precision with thoughtful, user‑centric design.</p>
+                    <p>Full‑stack developer and Software Engineering student delivering responsive, accessible products across React.js, Node.js, Express.js, and PostgreSQL. I pair clean architecture with thoughtful UI design to create reliable end-to-end web solutions that perform well at scale.</p>
+                    <p>Industry projects include maintaining production websites, shipping cross-platform mobile apps, and integrating REST APIs with PostgreSQL data pipelines.</p>
+                    <p>Previous experience in data operations sharpened my precision and collaboration, helping me ship features quickly while keeping quality high.</p>
                 </section>
 
                 <!-- Education section -->
@@ -218,9 +222,18 @@
                         </ul>
                     </div>
                     <div class="cv-main-item">
+                        <h4>Full-Stack Developer</h4>
+                        <div class="cv-main-subtitle">Sweaven Solutions</div>
+                        <div class="cv-main-date">Jan 2024 – Apr 2025</div>
+                        <ul class="cv-main-list">
+                            <li>Built and maintained client-facing websites across React front ends and Express services.</li>
+                            <li>Delivered cross-platform mobile applications that shared core APIs and design systems.</li>
+                        </ul>
+                    </div>
+                    <div class="cv-main-item">
                         <h4>Data Entry Specialist</h4>
                         <div class="cv-main-subtitle">Swift Rides LLC</div>
-                        <div class="cv-main-date">Aug 2024 – Jul 2025</div>
+                        <div class="cv-main-date">May 2025 – Aug 2025</div>
                     </div>
                 </section>
 
@@ -229,7 +242,7 @@
                     <h2 class="cv-main-h2">Projects</h2>
                     <div class="cv-main-item">
                         <h4>Portfolio Website</h4>
-                        <div class="cv-main-subtitle"><a href="https://yeabtmekasha.netlify.app/">Personal CV website</a></div>
+                        <div class="cv-main-subtitle"><a href="index.html">Personal CV website</a></div>
                         <p>Clean semantic HTML, modern CSS (Flexbox & Grid), dark/light mode, fully responsive.</p>
                     </div>
                     <div class="cv-main-item">
