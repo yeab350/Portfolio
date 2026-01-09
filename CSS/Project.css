@@ -16,6 +16,16 @@ html, body {
 
 img, video, svg, canvas { max-width: 100%; height: auto; }
 
+hr {
+    border: 0;
+    border-top: var(--separator-width) solid var(--separator-color);
+    opacity: 1;
+}
+
+.portfolio-main hr {
+    margin: 50px 0;
+}
+
 /* ========================================
    CSS CUSTOM PROPERTIES (VARIABLES)
    ======================================== */
@@ -1114,6 +1124,7 @@ body.theme-dark .cv-header-shell {
     grid-template-columns: 280px 1fr;
     min-height: 100vh;
     overflow: visible;
+    gap: 18px;
 }
 
 /* CV Sidebar */
@@ -1121,10 +1132,10 @@ body.theme-dark .cv-header-shell {
     /* Solid background to avoid transparency/variable issues */
     background: #334155; /* slate-700 */
     color: white;
-    padding: 30px 20px;
+    padding: 40px 28px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 34px;
     overflow: visible;
     border-radius: 16px;
 }
@@ -1136,7 +1147,7 @@ body.theme-dark .cv-sidebar {
 
 .cv-profile-section {
     text-align: center;
-    padding-bottom: 20px;
+    padding-bottom: 28px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 .cv-profile {
@@ -1168,7 +1179,7 @@ body.theme-dark .cv-sidebar {
     letter-spacing: 1px;
 }
 .cv-contact-item,.cv-link-item {
-    margin-bottom: 15px;
+    margin-bottom: 22px;
     font-size: 13px;
     line-height: 1.4;
 }
@@ -1193,7 +1204,7 @@ body.theme-dark .cv-sidebar {
 }
 
 .cv-sidebar-list li {
-    padding: 6px 0;
+    padding: 10px 0;
     font-size: 13px;
     color: rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -1204,12 +1215,12 @@ body.theme-dark .cv-sidebar {
 .cv-tech-badges {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 10px;
 }
 .cv-tech-badge {
     background: var(--accent-color);
     color: white;
-    padding: 4px 8px;
+    padding: 5px 10px;
     border-radius: 16px;
     font-size: 11px;
     font-weight: 500;
@@ -1217,10 +1228,10 @@ body.theme-dark .cv-sidebar {
 /* CV Main Content */
 .cv-main {
     background: var(--card-bg);
-    padding: 30px 25px;
+    padding: 36px 30px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 26px;
     overflow: visible;
 }
 .cv-main-card {
@@ -1253,6 +1264,24 @@ body.theme-dark .cv-sidebar {
     margin: 0 0 15px 0;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.cv-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.cv-project-item {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+    .cv-projects-grid {
+        grid-template-columns: 1fr;
+    }
 }
 .cv-main-item {
     margin-bottom: 20px;
@@ -1477,7 +1506,7 @@ body.theme-dark .cv-sidebar {
   html, body, .cv-root { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
   /* Page setup */
-    @page { size: A4; margin: 10mm; }
+      @page { size: A4; margin: 6mm; }
 
     /* Disable animations and transitions */
     *, *::before, *::after { animation: none !important; transition: none !important; box-shadow: none !important; }
@@ -1525,30 +1554,41 @@ body.theme-dark .cv-sidebar {
     .cv-header-actions { position: static !important; }
 
   /* Avoid unexpected page breaks inside key blocks */
-  .cv-sidebar, .cv-main-card, .cv-main-item { break-inside: avoid; page-break-inside: avoid; }
+    .cv-main-card, .cv-main-item { break-inside: avoid; page-break-inside: avoid; }
 
   /* Remove backdrop/filters that may wash out colors */
     header, .cv-header-actions { backdrop-filter: none !important; }
 
-  /* Fit to a single page: compact typography and spacing */
-    html, body { font-size: 11px !important; }
+    /* Fit to a single page: compact typography and spacing */
+                                html, body { font-size: 11px !important; }
   .cv-container { padding: 0 !important; margin: 0 !important; }
-  .cv-layout { grid-template-columns: 210px 1fr !important; gap: 8px !important; }
-  .cv-sidebar { padding: 16px 12px !important; }
+        /* Force side-by-side columns for print (prevents sidebar dropping to page 2) */
+        .cv-layout {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                align-items: stretch !important;
+                min-height: 0 !important;
+                gap: 6px !important;
+        }
+    .cv-sidebar { flex: 0 0 212px !important; max-width: 212px !important; padding: 12px 10px !important; border-radius: 0 !important; gap: 10px !important; justify-content: space-around !important; break-inside: auto !important; page-break-inside: auto !important; }
+    .cv-main { flex: 1 1 auto !important; min-width: 0 !important; }
   .cv-profile { width: 84px !important; height: 84px !important; border-width: 3px !important; }
   .cv-name { font-size: 18px !important; }
   .cv-title { font-size: 11px !important; }
-  .cv-sidebar-h3 { font-size: 12px !important; margin-bottom: 6px !important; }
-  .cv-contact-item, .cv-link-item { margin-bottom: 6px !important; font-size: 10px !important; }
-  .cv-sidebar-list li { padding: 3px 0 !important; font-size: 10px !important; }
-  .cv-tech-badge { padding: 2px 6px !important; font-size: 9px !important; }
+    .cv-profile-section { padding-bottom: 12px !important; }
+    .cv-sidebar-h3 { font-size: 12px !important; margin: 6px 0 4px 0 !important; }
+    .cv-contact-item, .cv-link-item { margin-bottom: 6px !important; font-size: 9.6px !important; }
+    .cv-sidebar-list li { padding: 3px 0 !important; font-size: 9.6px !important; }
+        .cv-tech-badge { padding: 2px 5px !important; font-size: 8.2px !important; line-height: 1.15 !important; }
 
-    .cv-main { padding: 12px 10px !important; gap: 4px !important; }
+        /* Middle ground: fill the page without huge gaps */
+        .cv-main { padding: 10px 9px !important; gap: 4px !important; justify-content: space-around !important; }
   .cv-header-card { margin-bottom: 4px !important; }
-    .cv-main-card { padding: 5px 0 5px 8px !important; margin: 2px 0 !important; border-left-width: 2px !important; }
+    .cv-main-card { padding: 6px 0 6px 8px !important; margin: 3px 0 !important; border-left-width: 2px !important; }
   .cv-chip { padding: 4px 8px !important; font-size: 10px !important; }
   .cv-main-h2 { font-size: 15px !important; margin: 0 0 4px 0 !important; }
-    .cv-main-item { margin-bottom: 5px !important; padding-bottom: 3px !important; }
+    .cv-main-item { margin-bottom: 7px !important; padding-bottom: 4px !important; }
   .cv-main-item h4 { font-size: 13px !important; }
   .cv-main-subtitle { font-size: 11px !important; }
   .cv-main-date { font-size: 10px !important; }
@@ -1557,8 +1597,22 @@ body.theme-dark .cv-sidebar {
   .cv-chip-row { gap: 6px !important; }
   .cv-main p { margin: 2px 0 !important; }
 
-    .cv-tech-badges { display: grid !important; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 4px !important; }
+    .cv-tech-section { margin-top: 4px !important; }
+    .cv-tech-section .cv-sidebar-h3 { margin-bottom: 6px !important; }
+    .cv-tech-badges {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+    }
+    .cv-tech-badge { white-space: nowrap !important; }
 
-    /* Ensure content stays on one page while using full width */
-    .cv-container { transform: none !important; width: 100% !important; }
+    /* Fill the page height without forcing sections to the bottom */
+    .cv-root, .cv-container, .cv-layout, .cv-sidebar, .cv-main { min-height: 100vh !important; }
+
+    /* Recent Projects grid: use 2 columns to reduce bottom whitespace */
+    .cv-projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 9px !important; }
+    .cv-project-item { margin: 0 !important; padding: 0 !important; border-bottom: none !important; }
+
+    /* Ensure content stays on one page while staying cross-browser */
+    .cv-container { transform: none !important; width: 100% !important; max-width: none !important; }
 }
