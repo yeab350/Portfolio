@@ -11,51 +11,80 @@
 
 
   // Dark mode toggle persistence
-  const darkToggle = $('#darkModeToggle');
+  // Note: The toggle is rendered by React, so it may not exist when this script runs.
+  function setupTheme() {
+    let darkToggle = $('#darkModeToggle');
 
-  function setThemeClass(isDark) {
-    // Apply on html and body to maximize CSS variable scope
-    const root = document.documentElement;
-    root.classList.toggle('theme-dark', !!isDark);
-    if (document.body) document.body.classList.toggle('theme-dark', !!isDark);
-  }
+    function setThemeClass(isDark) {
+      // Apply on html and body to maximize CSS variable scope
+      const root = document.documentElement;
+      root.classList.toggle('theme-dark', !!isDark);
+      if (document.body) document.body.classList.toggle('theme-dark', !!isDark);
 
-  function getStoredTheme() {
-    return localStorage.getItem('theme'); // 'dark' | 'light' | null
-  }
+      // Keep the checkbox-driven CSS in sync when the toggle exists
+      if (darkToggle) darkToggle.checked = !!isDark;
+    }
 
-  function storeTheme(val) {
-    if (!val) return localStorage.removeItem('theme');
-    localStorage.setItem('theme', val);
-  }
+    function getStoredTheme() {
+      return localStorage.getItem('theme'); // 'dark' | 'light' | null
+    }
 
-  const media = window.matchMedia('(prefers-color-scheme: dark)');
+    function storeTheme(val) {
+      if (!val) return localStorage.removeItem('theme');
+      localStorage.setItem('theme', val);
+    }
 
-  function applyThemeFromPreference() {
-    const stored = getStoredTheme();
-    const shouldDark = stored === 'dark' || (stored == null && media.matches);
-    if (darkToggle) darkToggle.checked = !!shouldDark;
-    setThemeClass(shouldDark);
-  }
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-  if (darkToggle) {
-    // Initialize
+    function applyThemeFromPreference() {
+      const stored = getStoredTheme();
+      const shouldDark = stored === 'dark' || (stored == null && media.matches);
+      setThemeClass(shouldDark);
+    }
+
+    function bindToggle() {
+      if (!darkToggle) return;
+      if (darkToggle.dataset.themeBound === '1') return;
+      darkToggle.dataset.themeBound = '1';
+
+      darkToggle.addEventListener('change', () => {
+        const mode = darkToggle.checked ? 'dark' : 'light';
+        storeTheme(mode);
+        setThemeClass(mode === 'dark');
+      });
+    }
+
+    // Always apply theme (works even if the checkbox isn't present yet)
     applyThemeFromPreference();
 
-    // Save on change
-    darkToggle.addEventListener('change', () => {
-      const mode = darkToggle.checked ? 'dark' : 'light';
-      storeTheme(mode);
-      setThemeClass(mode === 'dark');
-    });
+    // Bind if present now
+    bindToggle();
+
+    // If the checkbox isn't present yet, wait for React to render it
+    if (!darkToggle) {
+      const obs = new MutationObserver(() => {
+        darkToggle = $('#darkModeToggle');
+        if (darkToggle) {
+          // Sync checkbox with current theme class
+          const isDark = document.documentElement.classList.contains('theme-dark');
+          darkToggle.checked = isDark;
+          bindToggle();
+          obs.disconnect();
+        }
+      });
+
+      obs.observe(document.documentElement, { childList: true, subtree: true });
+    }
 
     media.addEventListener('change', () => {
       if (!getStoredTheme()) applyThemeFromPreference();
     });
+  }
 
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupTheme);
   } else {
-    // No toggle present (e.g., cv.html). Still apply stored/system theme
-    applyThemeFromPreference();
+    setupTheme();
   }
 
   // Mobile menu: close when navigating or pressing Escape
@@ -72,6 +101,40 @@
         menuToggle.checked = false;
       }
     });
+  }
+
+  // Sticky header surface on scroll (CSS hooks on .page.is-scrolled)
+  function setupHeaderScrollState() {
+    const page = $('.page');
+    if (!page) return;
+
+    let rafId = null;
+
+    function apply() {
+      rafId = null;
+      const scrolled = (window.scrollY || document.documentElement.scrollTop || 0) > 8;
+      page.classList.toggle('is-scrolled', scrolled);
+    }
+
+    function onScroll() {
+      if (rafId) return;
+      rafId = requestAnimationFrame(apply);
+    }
+
+    // Initial state + listeners
+    apply();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    window.addEventListener('pagehide', () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupHeaderScrollState);
+  } else {
+    setupHeaderScrollState();
   }
 
   // Footer year auto-update if pattern like "© 2025 ..." exists

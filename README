@@ -1,1 +1,22 @@
-I have mad small changes and updated the portfolio
+Portfolio (React + Vite)
+
+This repo is now a single-page portfolio built with React (JSX) and Vite.
+
+Structure
+- `src/` contains the React app (one page with sections: Home, About, Portfolio, Contact).
+- `public/` contains static assets copied into the build output:
+	- `public/CSS/Project.css` (your existing stylesheet)
+	- `public/Images/` (images)
+	- `public/cv.html` (separate CV page for download/print)
+	- `public/app.js` (theme persistence + small UI helpers)
+- `legacy/` contains the old multi-page HTML files for reference.
+
+Run locally
+- Install: `npm install`
+- Dev server: `npm run dev`
+- Build: `npm run build`
+- Preview build: `npm run preview`
+
+Deploy (Netlify)
+- Build command: `npm run build`
+- Publish directory: `dist`
