@@ -1647,7 +1647,7 @@ body.theme-dark .cv-sidebar {
     header, .cv-header-actions { backdrop-filter: none !important; }
 
     /* Fit to a single page: compact typography and spacing */
-                                html, body { font-size: 11px !important; }
+                                html, body { font-size: 10px !important; }
   .cv-container { padding: 0 !important; margin: 0 !important; }
         /* Force side-by-side columns for print (prevents sidebar dropping to page 2) */
         .cv-layout {
@@ -1658,29 +1658,36 @@ body.theme-dark .cv-sidebar {
                 min-height: 0 !important;
                 gap: 6px !important;
         }
-    .cv-sidebar { flex: 0 0 212px !important; max-width: 212px !important; padding: 12px 10px !important; border-radius: 0 !important; gap: 10px !important; justify-content: space-around !important; break-inside: auto !important; page-break-inside: auto !important; }
+        .cv-sidebar { flex: 0 0 206px !important; max-width: 206px !important; padding: 10px 9px !important; border-radius: 0 !important; gap: 8px !important; justify-content: space-around !important; break-inside: auto !important; page-break-inside: auto !important; }
     .cv-main { flex: 1 1 auto !important; min-width: 0 !important; }
-  .cv-profile { width: 84px !important; height: 84px !important; border-width: 3px !important; }
-  .cv-name { font-size: 18px !important; }
-  .cv-title { font-size: 11px !important; }
-    .cv-profile-section { padding-bottom: 12px !important; }
+    .cv-profile { width: 78px !important; height: 78px !important; border-width: 3px !important; }
+    .cv-name { font-size: 17px !important; }
+    .cv-title { font-size: 10.5px !important; }
+        .cv-profile-section { padding-bottom: 10px !important; }
     .cv-sidebar-h3 { font-size: 12px !important; margin: 6px 0 4px 0 !important; }
     .cv-contact-item, .cv-link-item { margin-bottom: 6px !important; font-size: 9.6px !important; }
     .cv-sidebar-list li { padding: 3px 0 !important; font-size: 9.6px !important; }
         .cv-tech-badge { padding: 2px 5px !important; font-size: 8.2px !important; line-height: 1.15 !important; }
 
+                /* Compress long sidebar lists by splitting into columns */
+                .cv-sidebar-list {
+                        columns: 2;
+                        column-gap: 12px;
+                }
+                .cv-sidebar-list li { break-inside: avoid; }
+
         /* Middle ground: fill the page without huge gaps */
-        .cv-main { padding: 10px 9px !important; gap: 4px !important; justify-content: space-around !important; }
+                .cv-main { padding: 9px 8px !important; gap: 3px !important; justify-content: space-around !important; }
   .cv-header-card { margin-bottom: 4px !important; }
-    .cv-main-card { padding: 6px 0 6px 8px !important; margin: 3px 0 !important; border-left-width: 2px !important; }
-  .cv-chip { padding: 4px 8px !important; font-size: 10px !important; }
-  .cv-main-h2 { font-size: 15px !important; margin: 0 0 4px 0 !important; }
-    .cv-main-item { margin-bottom: 7px !important; padding-bottom: 4px !important; }
-  .cv-main-item h4 { font-size: 13px !important; }
-  .cv-main-subtitle { font-size: 11px !important; }
-  .cv-main-date { font-size: 10px !important; }
+        .cv-main-card { padding: 5px 0 5px 7px !important; margin: 2px 0 !important; border-left-width: 2px !important; }
+    .cv-chip { padding: 4px 7px !important; font-size: 9.6px !important; }
+    .cv-main-h2 { font-size: 14px !important; margin: 0 0 3px 0 !important; }
+        .cv-main-item { margin-bottom: 6px !important; padding-bottom: 3px !important; }
+    .cv-main-item h4 { font-size: 12.6px !important; }
+    .cv-main-subtitle { font-size: 10.5px !important; }
+    .cv-main-date { font-size: 9.6px !important; }
   .cv-main-list { margin: 2px 0 0 14px !important; }
-    .cv-main-list li, .cv-main-item p { font-size: 10.5px !important; line-height: 1.28 !important; margin: 2px 0 !important; }
+        .cv-main-list li, .cv-main-item p { font-size: 10px !important; line-height: 1.22 !important; margin: 2px 0 !important; }
   .cv-chip-row { gap: 6px !important; }
   .cv-main p { margin: 2px 0 !important; }
 
