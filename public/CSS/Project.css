@@ -713,6 +713,108 @@ th,td {
     text-align: left;
     transition: all 0.3s ease;
 }
+
+/* Work Experience table (React SPA): subtle dividers + mobile-friendly layout */
+.experience-table {
+    margin: 1.25rem 0 0;
+}
+
+.experience-table th,
+.experience-table td {
+    padding: 10px 12px;
+}
+
+.experience-table tbody tr + tr {
+    border-top: 1px solid color-mix(in srgb, var(--glass-border) 90%, transparent);
+}
+
+@media (max-width: 600px) {
+    .experience-table {
+        display: block;
+        width: 100%;
+    }
+
+    .experience-table thead {
+        display: none;
+    }
+
+    .experience-table tbody {
+        display: block;
+    }
+
+    .experience-table tbody tr {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 10px 10px;
+    }
+
+    .experience-table td {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 6px 0;
+    }
+
+    .experience-table td::before {
+        content: attr(data-label);
+        flex: 0 0 auto;
+        font-weight: 600;
+        color: var(--secondary-color);
+    }
+}
+
+/* Education table: match Work Experience behavior on mobile */
+.education-table {
+    margin: 1.25rem 0 0;
+}
+
+.education-table th,
+.education-table td {
+    padding: 10px 12px;
+}
+
+.education-table tbody tr + tr {
+    border-top: 1px solid color-mix(in srgb, var(--glass-border) 90%, transparent);
+}
+
+@media (max-width: 600px) {
+    .education-table {
+        display: block;
+        width: 100%;
+    }
+
+    .education-table thead {
+        display: none;
+    }
+
+    .education-table tbody {
+        display: block;
+    }
+
+    .education-table tbody tr {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 10px 10px;
+    }
+
+    .education-table td {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 6px 0;
+    }
+
+    .education-table td::before {
+        content: attr(data-label);
+        flex: 0 0 auto;
+        font-weight: 600;
+        color: var(--secondary-color);
+    }
+}
 tr:hover { background: transparent; }
 th {
     background: transparent;
@@ -1001,6 +1103,7 @@ footer {
         z-index: 1000;
         opacity: 0;
         transform: translateY(-10px);
+        animation: none;
         transition: opacity 220ms ease, transform 220ms ease;
         pointer-events: none;
     }

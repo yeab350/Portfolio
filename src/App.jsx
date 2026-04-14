@@ -121,7 +121,7 @@ export default function App() {
             <div className="split-grid split-grid--roomy">
               <article>
                 <h2>Education</h2>
-                <table>
+                <table className="education-table">
                   <thead>
                     <tr>
                       <th>Degree</th>
@@ -131,14 +131,14 @@ export default function App() {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>BSc in Software Engineering</td>
-                      <td>HiLCoE School of Computer Science &amp; Technology</td>
-                      <td>Expected January 2027</td>
+                      <td data-label="Degree">BSc in Software Engineering</td>
+                      <td data-label="Institution">HiLCoE School of Computer Science &amp; Technology</td>
+                      <td data-label="Year">Expected January 2027</td>
                     </tr>
                     <tr>
-                      <td>High School Diploma</td>
-                      <td>Gibson Youth Academy</td>
-                      <td>July 2021</td>
+                      <td data-label="Degree">High School Diploma</td>
+                      <td data-label="Institution">Gibson Youth Academy</td>
+                      <td data-label="Year">July 2021</td>
                     </tr>
                   </tbody>
                 </table>
@@ -156,7 +156,7 @@ export default function App() {
 
           <section className="reveal">
             <h2>Work Experience</h2>
-            <table>
+            <table className="experience-table">
               <thead>
                 <tr>
                   <th>Position</th>
@@ -166,24 +166,19 @@ export default function App() {
               </thead>
               <tbody>
                 <tr>
-                  <td>Android Developer (Intern)</td>
-                  <td>IntelliVerse</td>
-                  <td>Mar 2026 - Present</td>
+                  <td data-label="Position">Freelance Web Designer</td>
+                  <td data-label="Company">Self-Employed</td>
+                  <td data-label="Year">2023 - Present</td>
                 </tr>
                 <tr>
-                  <td>Freelance Web Designer</td>
-                  <td>Self-Employed</td>
-                  <td>2023 - Present</td>
+                  <td data-label="Position">Data Entry Specialist</td>
+                  <td data-label="Company">Swift Rides LLC</td>
+                  <td data-label="Year">May 2025 – August 2025</td>
                 </tr>
                 <tr>
-                  <td>Data Entry Specialist</td>
-                  <td>Swift Rides LLC</td>
-                  <td>May 2025 – August 2025</td>
-                </tr>
-                <tr>
-                  <td>Full-Stack Developer</td>
-                  <td>Sweaven Solutions</td>
-                  <td>January 2024 - April 2025</td>
+                  <td data-label="Position">Full-Stack Developer</td>
+                  <td data-label="Company">Sweaven Solutions</td>
+                  <td data-label="Year">January 2024 - April 2025</td>
                 </tr>
               </tbody>
             </table>

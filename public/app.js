@@ -87,13 +87,38 @@
     setupTheme();
   }
 
-  // Mobile menu: close when navigating or pressing Escape
-  const menuToggle = $('#menu-toggle');
-  if (menuToggle) {
-    $$('.nav-links a').forEach((a) => {
-      a.addEventListener('click', () => {
-        if (menuToggle.checked) menuToggle.checked = false;
-      });
+  // Mobile menu + in-page navigation:
+  // - React renders the nav, so elements may not exist when this script runs
+  // - Close menu after selecting an item
+  // - Smooth-scroll to sections for hash links
+  function setupNav() {
+    let menuToggle = $('#menu-toggle');
+    if (!menuToggle) return;
+    if (menuToggle.dataset.navBound === '1') return;
+    menuToggle.dataset.navBound = '1';
+
+    // Ensure menu is closed by default (covers refresh + bfcache restore)
+    menuToggle.checked = false;
+
+    // Event delegation handles links added later (React)
+    document.addEventListener('click', (e) => {
+      const link = e.target && e.target.closest ? e.target.closest('.nav-links a') : null;
+      if (!link) return;
+
+      const href = link.getAttribute('href') || '';
+      const isHashLink = href.startsWith('#') && href.length > 1;
+
+      if (menuToggle.checked) menuToggle.checked = false;
+
+      if (isHashLink) {
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          // Keep URL hash in sync without a jump
+          if (history && history.pushState) history.pushState(null, '', href);
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     });
 
     document.addEventListener('keydown', (e) => {
@@ -101,6 +126,28 @@
         menuToggle.checked = false;
       }
     });
+
+    // Some browsers restore checkbox state on back/forward cache
+    window.addEventListener('pageshow', () => {
+      menuToggle.checked = false;
+    });
+  }
+
+  // Bind now or wait for React to render header/nav
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupNav);
+  } else {
+    setupNav();
+  }
+
+  if (!$('#menu-toggle')) {
+    const navObs = new MutationObserver(() => {
+      if ($('#menu-toggle')) {
+        setupNav();
+        navObs.disconnect();
+      }
+    });
+    navObs.observe(document.documentElement, { childList: true, subtree: true });
   }
 
   // Sticky header surface on scroll (CSS hooks on .page.is-scrolled)
