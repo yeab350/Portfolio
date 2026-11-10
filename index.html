@@ -5,26 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Personal CV of Yeab Mekasha - Full‑Stack Developer, Web Designer & Software Engineering Student"
+      content="Yeab T. Mekasha, Frontend Developer with full-stack experience and Software Engineering student in Addis Ababa."
     />
+    <meta name="author" content="Yeab T. Mekasha" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://yeabtmekasha.netlify.app" />
 
-    <title>Yeab T. Mekasha</title>
+    <title>Yeab T. Mekasha — Frontend Developer</title>
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yeabtmekasha.netlify.app" />
+    <meta property="og:title" content="Yeab T. Mekasha — Frontend Developer" />
+    <meta
+      property="og:description"
+      content="Yeab T. Mekasha, Frontend Developer with full-stack experience and Software Engineering student in Addis Ababa."
+    />
+    <meta property="og:image" content="https://yeabtmekasha.netlify.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Yeab T. Mekasha — Frontend Developer with full-stack experience" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://yeabtmekasha.netlify.app" />
+    <meta name="twitter:title" content="Yeab T. Mekasha — Frontend Developer" />
+    <meta
+      name="twitter:description"
+      content="Yeab T. Mekasha, Frontend Developer with full-stack experience and Software Engineering student in Addis Ababa."
+    />
+    <meta name="twitter:image" content="https://yeabtmekasha.netlify.app/og-image.png" />
+
+    <!-- Clean Developer Favicon -->
     <link
       rel="icon"
       type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%A0%3C/text%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2310b981'/%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' font-family='sans-serif' font-size='50' font-weight='700' fill='%23ffffff'%3EYM%3C/text%3E%3C/svg%3E"
     />
 
-    <link rel="stylesheet" href="/CSS/Project.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <!-- Google Fonts: Inter (Primary UI & CV) + JetBrains Mono (Dates & Code Tags only) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome icons -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="./CSS/Project.css" />
+
+    <!-- Structured Data (JSON-LD) for SEO / Recruiter ATS indexing -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Yeab T. Mekasha",
+        "jobTitle": "Frontend Developer",
+        "description": "Frontend Developer with full-stack experience and Software Engineering student in Addis Ababa.",
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "HiLCoE School of Computer Science & Technology"
+        },
+        "url": "https://yeabtmekasha.netlify.app",
+        "sameAs": [
+          "https://github.com/yeab350",
+          "https://www.linkedin.com/in/yeab-tsegaye-25765724b"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script src="/app.js" defer></script>
   </body>
 </html>
