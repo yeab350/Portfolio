@@ -62,7 +62,7 @@ function useReveal() {
           }
         });
       },
-      { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+      { threshold: 0.04, rootMargin: '0px 0px 0px 0px' }
     );
 
     els.forEach(el => observer.observe(el));
@@ -328,94 +328,98 @@ function ProjectCard({ project }) {
   };
 
   return (
-    <article
-      className={`project-card-wrapper reveal ${isFlipped ? 'is-flipped' : ''}`}
-      tabIndex={0}
-      role="button"
-      aria-label={`Project: ${project.title}. ${isFlipped ? 'Showing detailed back face' : 'Click or press Enter to view details'}`}
-      aria-expanded={isFlipped}
-      onClick={toggleFlip}
-      onKeyDown={handleKeyDown}
-    >
-      <div className="flip-card-inner">
-        {/* Front Face: Rich, informative, compact, no boxed icons, no featured badges */}
-        <div className="flip-card-front">
-          <div className="card-front-header">
-            <span className="card-category-label">{project.category}</span>
-            <div className="card-soft-icon" aria-hidden="true">
-              {project.customIcon ? project.customIcon : <i className={project.icon} />}
+    <div className="project-card-col reveal">
+      <article
+        className={`project-card-wrapper ${isFlipped ? 'is-flipped' : ''}`}
+        tabIndex={0}
+        role="button"
+        aria-label={`Project: ${project.title}. ${isFlipped ? 'Showing detailed back face' : 'Click or press Enter to view details'}`}
+        aria-pressed={isFlipped}
+        onClick={toggleFlip}
+        onKeyDown={handleKeyDown}
+      >
+        <div className="flip-card-inner">
+          {/* Front Face: Rich, informative, compact, no boxed icons, no featured badges */}
+          <div className="flip-card-front">
+            <div className="card-front-header">
+              <span className="card-category-label">{project.category}</span>
+              <div className="card-soft-icon" aria-hidden="true">
+                {project.customIcon ? project.customIcon : <i className={project.icon} />}
+              </div>
+            </div>
+
+            <div className="card-front-body">
+              <h3 className="project-card-title">{project.title}</h3>
+              <p className="project-card-front-desc">{project.frontDescription}</p>
+            </div>
+
+            <div className="card-front-footer">
+              <div className="card-tech-pills">
+                {project.frontTech.map(tech => (
+                  <span key={tech} className="tech-pill font-mono">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <span className="card-view-details">View details ↶</span>
             </div>
           </div>
 
-          <div className="card-front-body">
-            <h3 className="project-card-title">{project.title}</h3>
-            <p className="project-card-front-desc">{project.frontDescription}</p>
-          </div>
+          {/* Back Face: Longer overview, key features, role, live/github links */}
+          <div className="flip-card-back">
+            <div className="card-back-header">
+              <h4 className="project-back-title">{project.title}</h4>
+              <span className="project-back-role">{project.role}</span>
+            </div>
 
-          <div className="card-front-footer">
-            <div className="card-tech-pills">
-              {project.frontTech.map(tech => (
-                <span key={tech} className="tech-pill font-mono">
-                  {tech}
-                </span>
+            <p className="project-back-desc">{project.backDescription}</p>
+
+            <ul className="project-features-list">
+              {project.features.map((feat, idx) => (
+                <li key={idx}>
+                  <span className="feat-bullet">•</span> {feat}
+                </li>
               ))}
+            </ul>
+
+            <div className="project-back-links">
+              {project.liveUrl ? (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card-action-link"
+                  onClick={e => e.stopPropagation()}
+                  onKeyDown={e => e.stopPropagation()}
+                >
+                  Live Demo ↗
+                </a>
+              ) : (
+                <span className="card-action-link-muted" title="Live demo link placeholder">
+
+                </span>
+              )}
+              {project.githubUrl ? (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card-action-link"
+                  onClick={e => e.stopPropagation()}
+                  onKeyDown={e => e.stopPropagation()}
+                >
+                  GitHub ↗
+                </a>
+              ) : (
+                <span className="card-action-link-muted">
+                  GitHub ↗
+                </span>
+              )}
             </div>
-            <span className="card-view-details">View details ↶</span>
           </div>
         </div>
-
-        {/* Back Face: Longer overview, key features, role, live/github links */}
-        <div className="flip-card-back">
-          <div className="card-back-header">
-            <h4 className="project-back-title">{project.title}</h4>
-            <span className="project-back-role">{project.role}</span>
-          </div>
-
-          <p className="project-back-desc">{project.backDescription}</p>
-
-          <ul className="project-features-list">
-            {project.features.map((feat, idx) => (
-              <li key={idx}>
-                <span className="feat-bullet">•</span> {feat}
-              </li>
-            ))}
-          </ul>
-
-          <div className="project-back-links">
-            {project.liveUrl ? (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-action-link"
-                onClick={e => e.stopPropagation()}
-              >
-                Live Demo ↗
-              </a>
-            ) : (
-              <span className="card-action-link-muted" title="Live demo link placeholder">
-
-              </span>
-            )}
-            {project.githubUrl ? (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-action-link"
-                onClick={e => e.stopPropagation()}
-              >
-                GitHub ↗
-              </a>
-            ) : (
-              <span className="card-action-link-muted">
-                GitHub ↗
-              </span>
-            )}
-          </div>
-        </div>
-      </div>
-    </article>
+      </article>
+    </div>
   );
 }
 

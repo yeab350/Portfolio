@@ -150,6 +150,9 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+  width: 100%;
+  max-width: 100%;
 }
 
 body {
@@ -158,14 +161,20 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: visible;
+  overflow-wrap: anywhere;
 }
 
 .page {
   background-color: var(--bg-page);
   color: var(--text-primary);
   min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   transition: background-color var(--dur-std) ease, color var(--dur-std) ease;
@@ -176,10 +185,21 @@ body {
 }
 
 img,
-svg {
+svg,
+picture,
+video,
+canvas {
   display: block;
   max-width: 100%;
   height: auto;
+  box-sizing: border-box;
+}
+
+code,
+pre,
+.font-mono {
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 a {
@@ -215,7 +235,8 @@ button {
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  padding-inline: clamp(24px, 5vw, 96px);
+  padding-inline: clamp(20px, 5vw, 96px);
+  box-sizing: border-box;
 }
 
 /* Unified, consistent section vertical padding */
@@ -679,16 +700,18 @@ section[id],
 
 .skills-columns-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-6);
   border-top: 1px solid var(--border);
   padding-top: var(--space-6);
+  width: 100%;
 }
 
 .skill-group {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 
 .skill-group-title {
@@ -702,27 +725,31 @@ section[id],
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
 /* 3-Column Full-Width Credentials */
 .credentials-columns-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-6);
   border-top: 1px solid var(--border);
   padding-top: var(--space-6);
+  width: 100%;
 }
 
 .credential-col {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  min-width: 0;
 }
 
 .cred-entry {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 
 .cred-entry-title {
@@ -730,11 +757,13 @@ section[id],
   font-weight: 600;
   color: var(--text-primary);
   line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .cred-entry-sub {
   font-size: 0.88rem;
   color: var(--text-secondary);
+  overflow-wrap: anywhere;
 }
 
 .cred-entry-date {
@@ -746,6 +775,8 @@ section[id],
   font-size: 0.84rem;
   color: var(--accent);
   margin-top: 2px;
+  overflow-wrap: anywhere;
+  word-break: break-all;
 }
 
 .cred-entry-link:hover {
@@ -759,14 +790,17 @@ section[id],
   display: flex;
   flex-direction: column;
   border-top: 1px solid var(--border);
+  width: 100%;
 }
 
 .experience-row {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 240px minmax(0, 1fr);
   gap: var(--space-6);
   padding: var(--space-6) 0;
   border-bottom: 1px solid var(--border);
+  width: 100%;
+  min-width: 0;
 }
 
 .exp-meta {
@@ -774,6 +808,7 @@ section[id],
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
+  min-width: 0;
 }
 
 .exp-dates {
@@ -797,24 +832,30 @@ section[id],
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 
 .exp-role {
   font-size: 1.15rem;
   font-weight: 600;
   color: var(--text-primary);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .exp-company {
   font-size: 0.92rem;
   color: var(--accent);
   margin-bottom: var(--space-2);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .exp-bullets {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 0;
 }
 
 .exp-bullets li {
@@ -823,6 +864,8 @@ section[id],
   line-height: 1.6;
   position: relative;
   padding-left: 16px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .exp-bullets li::before {
@@ -837,69 +880,181 @@ section[id],
    ───────────────────────────────────────────────────────────────────── */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(min(100%, 320px), 1fr));
   gap: var(--space-5);
+  align-items: stretch;
+  width: 100%;
 }
 
-/* Compact, uniform card wrapper */
+/* Outer column wrapper handles scroll reveal without touching 3D context */
+.project-card-col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+}
+
+/* Interactive card button */
 .project-card-wrapper {
-  perspective: 1000px;
-  height: 295px;
-  min-height: 295px;
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
   cursor: pointer;
   outline: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+  text-align: left;
+  position: relative;
 }
 
 .project-card-wrapper:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
+  border-radius: var(--radius-card);
 }
 
+/* Inner Element: CSS Grid stacks front and back faces in the same cell (1 / 1) */
 .flip-card-inner {
-  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   width: 100%;
   height: 100%;
+  min-width: 0;
   border-radius: var(--radius-card);
-  transform-style: preserve-3d;
-  transition: transform 0.5s var(--ease);
+  position: relative;
 }
 
-.project-card-wrapper:hover .flip-card-inner,
-.project-card-wrapper.is-flipped .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Card Faces */
+/* Card Faces: both live in grid-area: 1 / 1 so height comes naturally from content */
 .flip-card-front,
 .flip-card-back {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  min-height: 295px;
+  min-width: 0;
+  box-sizing: border-box;
   border-radius: var(--radius-card);
   padding: clamp(16px, 1.6vw, 20px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid var(--border);
-  background-color: var(--bg-card);
   box-shadow: var(--shadow-card);
-  transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color var(--dur-fast) ease,
+              box-shadow var(--dur-fast) ease;
 }
 
-.project-card-wrapper:hover .flip-card-front,
-.project-card-wrapper:hover .flip-card-back,
-.project-card-wrapper.is-flipped .flip-card-front,
+/* Crisp rendering on all card text */
+.project-card-title,
+.project-card-front-desc,
+.project-back-desc,
+.project-features-list,
+.card-tech-pills {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Base Touch / Screens ≤ 768px: Quick crossfade (opacity & subtle scale), transform: none when at rest ── */
+.flip-card-front {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  visibility: visible;
+  z-index: 2;
+}
+
+.flip-card-back {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+  overflow-y: auto;
+  max-height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.98);
+  visibility: hidden;
+  z-index: 1;
+}
+
+.project-card-wrapper.is-flipped .flip-card-front {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.98);
+  visibility: hidden;
+  z-index: 1;
+}
+
 .project-card-wrapper.is-flipped .flip-card-back {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  visibility: visible;
+  z-index: 2;
   border-color: var(--border-hover);
   box-shadow: var(--shadow-card-hover);
 }
 
-/* ── Front Face ── */
-.flip-card-front {
-  transform: rotateY(0deg);
+/* ── Desktop 3D Flip: strictly on pointer-fine mouse devices on screens ≥ 769px ── */
+@media (hover: hover) and (pointer: fine) and (min-width: 769px) {
+  .project-card-wrapper {
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+  }
+
+  .flip-card-inner {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.5s var(--ease);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+  }
+
+  .flip-card-front {
+    transform: none;
+    pointer-events: auto !important;
+    z-index: 2;
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    pointer-events: auto !important;
+    z-index: 1;
+  }
+
+  .project-card-wrapper:hover .flip-card-inner,
+  .project-card-wrapper.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+  }
+
+  .project-card-wrapper:hover .flip-card-front,
+  .project-card-wrapper:hover .flip-card-back,
+  .project-card-wrapper.is-flipped .flip-card-front,
+  .project-card-wrapper.is-flipped .flip-card-back {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-card-hover);
+  }
 }
 
 .card-front-header {
@@ -989,12 +1144,6 @@ section[id],
   align-items: center;
   justify-content: flex-end;
   gap: 4px;
-}
-
-/* ── Back Face ── */
-.flip-card-back {
-  transform: rotateY(180deg);
-  background-color: var(--bg-card-hover);
 }
 
 .card-back-header {
@@ -1991,28 +2140,32 @@ section[id],
   .flip-card-front,
   .flip-card-back {
     backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    transform: none !important;
     transition: opacity var(--dur-fast) ease !important;
   }
 
-  .project-card-wrapper:not(.is-flipped):not(:hover) .flip-card-back {
+  .project-card-wrapper:not(.is-flipped) .flip-card-back {
     opacity: 0 !important;
+    visibility: hidden !important;
     pointer-events: none !important;
   }
 
-  .project-card-wrapper:not(.is-flipped):not(:hover) .flip-card-front {
+  .project-card-wrapper:not(.is-flipped) .flip-card-front {
     opacity: 1 !important;
+    visibility: visible !important;
     pointer-events: auto !important;
   }
 
-  .project-card-wrapper.is-flipped .flip-card-front,
-  .project-card-wrapper:hover .flip-card-front {
+  .project-card-wrapper.is-flipped .flip-card-front {
     opacity: 0 !important;
+    visibility: hidden !important;
     pointer-events: none !important;
   }
 
-  .project-card-wrapper.is-flipped .flip-card-back,
-  .project-card-wrapper:hover .flip-card-back {
+  .project-card-wrapper.is-flipped .flip-card-back {
     opacity: 1 !important;
+    visibility: visible !important;
     pointer-events: auto !important;
   }
 }
@@ -2040,11 +2193,11 @@ section[id],
 /* Tablet (≤ 960px) */
 @media (max-width: 960px) {
   .projects-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(min(100%, 320px), 1fr));
   }
 
   .skills-columns-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .credentials-columns-grid {
@@ -2055,6 +2208,7 @@ section[id],
   .experience-row {
     grid-template-columns: 1fr;
     gap: var(--space-2);
+    min-width: 0;
   }
 
   .about-intro-layout {
@@ -2076,7 +2230,7 @@ section[id],
     width: 100%;
     background-color: var(--bg-surface);
     border-bottom: 1px solid var(--border);
-    padding: var(--space-4) clamp(24px, 5vw, 96px);
+    padding: var(--space-4) clamp(20px, 5vw, 96px);
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-2);
@@ -2103,27 +2257,38 @@ section[id],
 
 /* Mobile Portrait (≤ 640px / 375px) */
 @media (max-width: 640px) {
+  .container,
+  .navbar,
+  .footer-content {
+    padding-inline: clamp(20px, 5.5vw, 24px);
+  }
+
   .hero-container {
     grid-template-columns: 1fr;
     gap: var(--space-5);
     text-align: center;
+    min-width: 0;
   }
 
   .hero-content {
     align-items: center;
+    min-width: 0;
   }
 
   .hero-media {
     order: -1;
+    max-width: 100%;
   }
 
   .hero-photo-ring {
     width: 200px;
     height: 200px;
+    max-width: 100%;
   }
 
   .hero-stack-row {
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .hero-cta-group {
@@ -2142,26 +2307,43 @@ section[id],
 
   .projects-grid {
     grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    min-height: auto;
+    padding: var(--space-4);
   }
 
   .also-built-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+    min-width: 0;
   }
 
   .also-built-items {
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
+    min-width: 0;
   }
 
   .skills-columns-grid {
     grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .experience-row {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    min-width: 0;
   }
 
   .contact-card {
     padding: var(--space-5) var(--space-4);
+    min-width: 0;
   }
 
   .contact-card-email-row {
